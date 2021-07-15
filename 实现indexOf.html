@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var strStr = function (haystack, needle) {
+      const n = haystack.length, m = needle.length;
+      for (let i = 0; i + m <= n; i++) {
+        let flag = true;
+        for (let j = 0; j < m; j++) {
+          if (haystack[i + j] != needle[j]) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) {
+          return i;
+        }
+      }
+      return -1;
+    };
+    strStr('hello', 'll')
+  </script>
+</body>
+
+</html>

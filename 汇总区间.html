@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var summaryRanges = function(nums) {
+      let len = nums.length, res = [], idx = 0, p = 0;
+      for (let i = 0; i < len - 1; i++) {
+        if (++nums[i] == nums[i + 1]) {
+          p++
+        }
+      }
+    }
+    summaryRanges([0,1,2,4,5,7]) // ["0->2","4->5","7"]
+  </script>
+</body>
+</html>

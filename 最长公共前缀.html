@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <script type="text/javascript">
+        var longestCommonPrefix = function (strs) {
+            let res = ''
+            if (!strs.length) return res
+            for (let i = 0; i < strs[0].length; i++) {
+                for (let j = 1; j < strs.length; j++) {
+                    if (strs[0][i] !== strs[j][i]) return res
+                }
+                res += strs[0][i]
+            }
+            return res
+        }
+        longestCommonPrefix(["flower", "flow", "flight"])
+    </script>
+</body>
+
+</html>

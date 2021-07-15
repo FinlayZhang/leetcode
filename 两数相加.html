@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var twoSums = function(nums, target) {
+      let len = nums.length
+      let map = new Map()
+      for (let i = 0; i < len; i++) {
+        map.set(nums[i], i)
+        if (map.has(target - nums[i])) {
+          return [map.get(target - nums[i]), i]
+        }
+      }
+    }
+    console.log(twoSums([3,2,4], 6))
+  </script>
+</body>
+</html>
