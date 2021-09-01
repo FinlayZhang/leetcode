@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * @param {number[][]} triangle
+    * @return {number}
+    * triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+    *         2
+    *       3 4
+    *      6 5 7
+    *     4 1 8 3
+    */
+    var minimumTotal = function(triangle) {
+      let n = triangle.length // n代表三角形的高度(列)
+      for (let i = 1; i < n; i ++) {
+        for (let j = 0; j <= i; j ++) {
+          if (j == 0) {
+            triangle[i][j] += triangle[i - 1][j]
+          } else if (j == i) {
+            triangle[i][j] += triangle[i - 1][j - 1]
+          } else {
+            triangle[i][j] += Math.min(triangle[i - 1][j], triangle[i - 1][j - 1])
+          }
+        }
+      }
+      return Math.min(...triangle[n - 1])
+    }
+    minimumTotal([[2],[3,4],[6,5,7],[4,1,8,3]])
+  </script>
+</body>
+</html>

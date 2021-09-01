@@ -8,7 +8,7 @@
 <body>
   <script>
     var moveZeroes = function(nums) {
-      let n = nums.length, slow = 0, fast = 0;
+      let n = nums.length, slow = 0, fast = 0
       while (fast < n) {
         if (nums[fast] !== 0) {
           [nums[slow], nums[fast]] = [nums[fast], nums[slow]]

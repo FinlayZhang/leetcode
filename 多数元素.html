@@ -12,11 +12,11 @@
     * @return {number}
     */
     var majorityElement = function(nums) {
-      let len = nums.length;
-      let temp = nums.sort((a, b) => a - b);
+      let len = nums.length
+      let temp = nums.sort((a, b) => a - b)
       return temp[Math.floor(len / 2)]
     }
-    majorityElement([2,2,3,2,3,3,2,3,2])
+    console.log(majorityElement([2,2,3,2,3,3,2,3,2]))
   </script>
 </body>
 </html>

@@ -11,11 +11,13 @@
       let len = nums.length
       let map = new Map()
       for (let i = 0; i < len; i++) {
-        map.set(nums[i], i)
-        if (map.has(target - nums[i])) {
-          return [map.get(target - nums[i]), i]
+        if (!map.has(nums[i])) {
+          map.set(target - nums[i], i)
+        } else {
+          return [map.get(nums[i]), i]
         }
       }
+      return []
     }
     console.log(twoSums([3,2,4], 6))
   </script>

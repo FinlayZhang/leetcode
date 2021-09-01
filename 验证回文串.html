@@ -8,20 +8,20 @@
 <body>
   <script>
     var isPalindrome = function(s) {
-      let arr = s.toLocaleLowerCase().match(/[a-z0-9]+/g);
-      s = arr.length ? arr.join('') : '';
-      let left = 0, right = s.length - 1;
+      let arr = s.toLocaleLowerCase().match(/[a-z0-9]+/g)
+      s = arr.length ? arr.join('') : ''
+      let left = 0, right = s.length - 1
       while(left < right) {
-          if (s[left] == s[right]) {
-              left++
-              right--
-          } else {
-              return false
-          }
+        if (s[left] == s[right]) {
+          left++
+          right--
+        } else {
+          return false
+        }
       }
       return true
-  }
-  console.log(isPalindrome("A man, a plan, a canal: Panama"))
+    }
+    console.log(isPalindrome("A man, a plan, a canal: Panama"))
   </script>
 </body>
 </html>

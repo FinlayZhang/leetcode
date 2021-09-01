@@ -8,16 +8,18 @@
 <body>
   <script>
     var containsDuplicate = function(nums) {
-      let len = nums.length;
-      for (let i = 0; i < len; i ++) {
-        for (let j = i + 1; j < len; j ++) {
-          if (nums[i] == nums[j]) {
-            console.log(nums[i])
-          }
+      let len = nums.length
+      let map = new Map()
+      for (let i of nums) {
+        if (map.has(i)) {
+          return true
+        } else {
+          map.set(i, 1)
         }
       }
+      return false
     }
-    containsDuplicate([5,2,3,4,15,1,3])
+    console.log(containsDuplicate([5,2,3,4,15,1,3]))
   </script>
 </body>
 </html>
