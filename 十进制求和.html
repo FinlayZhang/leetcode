@@ -7,11 +7,6 @@
 </head>
 <body>
   <script>
-    /**
-    * @param {string} a
-    * @param {string} b
-    * @return {string}
-    */
     var addBinary = function(a, b) {
       while (a.length > b.length) b = '0' + b // 先对齐
       while (a.length < b.length) a = '0' + a // 先对齐
@@ -20,8 +15,8 @@
       let carry = 0 // 进位
       for (let i = a.length - 1; i >= 0; i--) {
         sum = Number(a[i]) + Number(b[i]) + carry
-        if (sum === 2) {
-          res[i] = sum - 2
+        if (sum >= 10) {
+          res[i] = sum - 10
           carry = 1
         } else {
           res[i] = sum
@@ -31,7 +26,7 @@
       if (carry) res.unshift(1) // 循环结束还要进1，则在res数组前加1
       return res.join('')
     }
-    addBinary('0010', '111011')
+    console.log(addBinary('999', '999'))
   </script>
 </body>
 </html>

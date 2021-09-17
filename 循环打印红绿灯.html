@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 红灯亮3s,黄灯亮1s,绿灯亮2s
+    let task = (light, timer) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          let lib = {
+            red: () => console.log(3000,'red'),
+            yellow: () => console.log(1000,'yellow'),
+            green: () => console.log(2000,'green')
+          }
+          lib[light]()
+          resolve()
+        }, timer)
+      })
+    }
+    const taskRunner = async () => {
+      await task('red', 3000)
+      await task('yellow', 1000)
+      await task('green', 2000)
+      taskRunner()
+    }
+    taskRunner()
+  </script>
+</body>
+</html>
