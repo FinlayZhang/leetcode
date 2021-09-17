@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>贪心算法找零问题</title>
+</head>
+<body>
+  <script>
+    // n 代表需要找的钱
+    // moneySet 代表面额
+    var changeMoney = function(n, moneySet) {
+      let res = new Map() // 需要找的钱map
+      for (let i = 0; i < moneySet.length; i ++) {
+        let money = moneySet[i]
+        if (n >= moneySet[i]) {
+          res.set(money, Math.floor(n / money))
+          n = n - Number(res.get(money)) * money
+        } else {
+          res.set(money, 0)
+        }
+      }
+      return res
+    }
+    console.log(changeMoney(126, [100, 50, 20, 5, 1]))
+  </script>
+</body>
+</html>

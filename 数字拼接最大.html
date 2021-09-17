@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var getBigNum = function(nums) {
+      nums.sort((a, b) => {
+        let ab = `${a}${b}`
+        let ba = `${b}${a}`
+        if (ba > ab) {
+          return 1
+        } else {
+          return -1
+        }
+      })
+      return nums.join('')
+    }
+    console.log(getBigNum([32, 94, 128, 1286, 6, 71]))
+  </script>
+</body>
+</html>
