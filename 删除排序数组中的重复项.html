@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>删除排序数组中的重复项</title>
 </head>
 <body>
   <script>
+    // 快慢指针
     var removeDuplicates = function(nums) {
       let n = nums.length
       if (n === 0) return 0
-      let slow = 1
-      for (let fast = 1; fast < n; fast++) {
+      let slow = fast = 1
+      while(fast < n) {
         if (nums[fast] !== nums[fast - 1]) {
           nums[slow] = nums[fast]
-          ++slow
+          slow++
         }
+        fast++
       }
       return slow
     }

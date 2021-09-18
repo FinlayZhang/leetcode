@@ -1,30 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>实现indexOf</title>
 </head>
-
 <body>
   <script>
     var strStr = function (haystack, needle) {
-      const n = haystack.length, m = needle.length;
-      for (let i = 0; i + m <= n; i++) {
-        let flag = true;
-        for (let j = 0; j < m; j++) {
-          if (haystack[i + j] != needle[j]) {
-            flag = false;
-            break;
-          }
-        }
-        if (flag) {
-          return i;
+      if (needle === '') return 0
+      for (var i = 0; i < haystack.length; i++) {
+        if (haystack[i] === needle[0]) {
+          if (haystack.substring(i, i + needle.length) === needle) return i
         }
       }
-      return -1;
-    };
+      return -1
+    }
     strStr('hello', 'll')
   </script>
 </body>

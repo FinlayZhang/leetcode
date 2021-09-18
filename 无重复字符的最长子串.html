@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无重复字符的最长子串</title>
+</head>
+<body>
+  <script>
+    var lengthOfLongestSubstring = function(s) {
+      let set = [], max = 0
+      for (let i = 0; i < s.length; i ++) {
+        let index = set.indexOf(s[i])
+        if (index !== -1) {
+          set.splice(0, index + 1)
+        }
+        set.push(s[i])
+        max = Math.max(set.length, max)
+      }
+      return max
+    }
+    console.log(lengthOfLongestSubstring('abcbacd'))
+  </script>
+</body>
+</html>
