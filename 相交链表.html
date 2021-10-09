@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>相交链表</title>
+</head>
+<body>
+  <script>
+    var getIntersectionNode = function(headA, headB) {
+      if (headA == null || headB == null) return null
+      let pA = headA, pB = headB
+      while (pA !== pB) {
+          pA = pA == null ? headB : pA.next
+          pB = pB == null ? headA : pB.next
+      }
+      return pB
+    }
+  </script>
+</body>
+</html>

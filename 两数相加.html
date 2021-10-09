@@ -3,23 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>链表两数相加</title>
 </head>
 <body>
   <script>
-    var twoSums = function(nums, target) {
-      let len = nums.length
-      let map = new Map()
-      for (let i = 0; i < len; i++) {
-        if (!map.has(nums[i])) {
-          map.set(target - nums[i], i)
-        } else {
-          return [map.get(nums[i]), i]
-        }
-      }
-      return []
+    // 定义链表
+    function ListNode(val, next) {
+      this.val = val === undefined ? 0 : val
+      this.next = next === undefined ? null : next
     }
-    console.log(twoSums([3,2,4], 6))
+    // 链表1
+    let s1 = new ListNode(1)
+    s1.next = new ListNode(2)
+    s1.next.next = new ListNode(4)
+
+    // 链表2
+    let s2 = new ListNode(1)
+    s2.next = new ListNode(3)
+    s2.next.next = new ListNode(4)
+    var addTwoNumbers = function(L1, L2) {
+      let head = needle = null // 新链表头和链表指针
+      let carry = 0 //进位值
+      while (L1 || L2) {
+        let n1 = L1 ? L1.val : 0
+        let n2 = L2 ? L2.val : 0
+        let sum = n1 + n2 + carry
+        if (!head) {
+          head = needle = new ListNode(sum % 10)
+        } else {
+          needle.next = new ListNode(sum % 10)
+          needle = needle.next
+        }
+        carry = Math.floor(sum / 10)
+        if (L1) L1 = L1.next
+        if (L2) L2 = L2.next
+      }
+      if (carry) needle.next = new ListNode(carry)
+      return head
+    }
+    console.log(addTwoNumbers(s1, s2))
   </script>
 </body>
 </html>

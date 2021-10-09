@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>删除链表节点</title>
+</head>
+<body>
+  <script>
+    var deleteNode = function(head, val) {
+      if (head === null) return null
+      if (head.val === val) return head.next
+      let current = head
+      while (current.next !== null && current.next.val !== val) {
+        current = current.next
+      }
+      if (current.next !== null) current.next = current.next.next
+      return head
+    }
+  </script>
+</body>
+</html>
