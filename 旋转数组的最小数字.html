@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旋转数组的最小数字</title>
+</head>
+<body>
+  <script>
+    var minArray = function(numbers) {
+      let low = 0
+      let high = numbers.length - 1
+      while (low < high) {
+          const pivot = low + Math.floor((high - low) / 2)
+          if (numbers[pivot] < numbers[high]) {
+              high = pivot
+          } else if (numbers[pivot] > numbers[high]) {
+              low = pivot + 1
+          } else {
+              high -= 1
+          }
+      }
+      return numbers[low]
+    }
+    console.log(minArray([3,4,5,1,2]))
+  </script>
+</body>
+</html>
