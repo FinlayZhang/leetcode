@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数柯里化</title>
+</head>
+<body>
+  <script>
+    function curry(func, args) {
+      var argLen = func.length
+      var args = args || []
+      return function () {
+        args.push(...arguments)
+        if (args.length < argLen) {
+          return curry.call(this, func, args)
+        }
+        return func.apply(this, args)
+      }
+    }
+    let add = curry(function(a,b,c) {
+      console.log(a,b,c)
+    })
+    console.log(add(1, 2)(3))
+  </script>
+</body>
+</html>
