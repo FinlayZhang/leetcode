@@ -7,7 +7,36 @@
 </head>
 <body>
   <script>
-    
+    var longestPalindrome = function(s) {
+      if (s === null) return null
+      let length = s.length
+      if (length <= 1) return s
+      let maxLen = 1
+      let begin = 0
+      for (let i = length  - 2; i >= 1; i--) {
+        // 以字符中心向左右扩散、以字符右边的间隙为中心向左右扩散求最大值
+        let tempLen = Math.max(palindromeLength(s, i - 1, i + 1), palindromeLength(s, i, i + 1))
+        if (tempLen > maxLen) {
+          maxLen = tempLen
+          begin = i - ((maxLen - 1) >> 1)
+        }
+      }
+      // 以0号字符右边的间隙为中心的最长回文子串长度是2
+      if (s[0] === s[1] && maxLen < 2) {
+        begin = 0
+        maxLen = 2
+      }
+      return s.substring(begin, maxLen + begin)
+    }
+    // 从l开始向左扩散，从r开始向右扩散，获得最长回文子串的长度
+    function palindromeLength(s, l, r) {
+      while (l >= 0 && r < s.length && s[l] === s[r]) {
+        l--
+        r++
+      }
+      return r - l - 1
+    }
+    console.log(longestPalindrome('cbbaba'))
   </script>
 </body>
 </html>
