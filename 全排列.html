@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全排列</title>
+</head>
+<body>
+  <script>
+    var permute = function(nums) {
+      const res = [], path = []
+      backtracking([])
+      return res
+      function backtracking(used) {
+        if (path.length === nums.length) {
+          res.push([...path])
+          return
+        }
+        for (let i = 0; i < nums.length; i ++) {
+          if (used[i]) continue
+          path.push(nums[i])
+          used[i] = true
+          backtracking(used)
+          path.pop()
+          used[i] = false
+        }
+      }
+    }
+    console.log(permute([1,2,3]))
+  </script>
+</body>
+</html>

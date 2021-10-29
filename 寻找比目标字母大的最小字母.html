@@ -13,7 +13,7 @@
     * @return {character}
     */
     var nextGreatestLetter = function(letters, target) {
-      let left = 0, right = letters.length - 1;
+      let left = 0, right = letters.length - 1
       while (left <= right) {
         let mid = (left + right) >> 1
         if (target > letters[mid]) {
@@ -22,7 +22,7 @@
           right = mid - 1
         }
       }
-      let res = left >= right + 1 ? letters[0] : letters[left]
+      let res = left - 1 >= right ? letters[0] : letters[left]
       return res
     }
     console.log(nextGreatestLetter(["c", "f", "j"], 'a'))

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字母组合</title>
+</head>
+<body>
+  <script>
+    var letterCombinations = function(digits) {
+      const len = digits.length
+      const map = ["","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
+      if (!len) return []
+      if (len === 1) return map[digits].split("")
+      let res = [], path = ''
+      backtracking(digits, 0)
+      return res
+      function backtracking(n, a) {
+        if (path.length === len) {
+          res.push(path)
+          return
+        }
+        for (const v of map[n[a]]) {
+          path = path + v
+          backtracking(n, a + 1)
+          path = path.substring(0, path.length - 1)
+        }
+      }
+    }
+    console.log(letterCombinations('3467'))
+  </script>
+</body>
+</html>
