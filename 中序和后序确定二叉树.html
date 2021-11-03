@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中序和后序确定二叉树</title>
+</head>
+<body>
+  <script>
+    function TreeNode(val, left, right) {
+      this.val = (val===undefined ? 0 : val)
+      this.left = (left===undefined ? null : left)
+      this.right = (right===undefined ? null : right)
+    }
+    var buildTree = function(inorder, postorder) {
+      let map = new Map()
+      for (let i = 0; i < inorder.length; i ++) {
+          map.set(inorder[i], i)
+      }
+      const helper = function(inStart, inEnd, postStart, postEnd) {
+          if (inStart > inEnd) return null
+          let rootVal = postorder[postEnd]
+          let root = new TreeNode(rootVal)
+          let mid = map.get(rootVal)
+          root.left = helper(inStart, mid - 1, postStart, mid - inStart + postStart - 1)
+          root.right = helper(mid + 1, inEnd, mid - inStart + postStart, postEnd - 1)
+          return root
+      }
+      return helper(0, inorder.length - 1, 0, postorder.length - 1)
+    }
+    console.log(buildTree([10,9,3,15,20,7], [10,9,15,7,20,3]))
+  </script>
+</body>
+</html>
