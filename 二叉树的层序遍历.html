@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二叉树的层序遍历</title>
+</head>
+<body>
+  <script>
+    var levelOrder = function(root) {
+      if (!root) return []
+      let res = [] // 存储打印结果
+      let queue = [root] // 队列存放每层节点信息,先存根节点
+      while (queue.length) {
+        const node = queue.shift()
+        res.push(node.val)
+        node.left && queue.push(node.left)
+        node.right && queue.push(node.right)
+      }
+      return res
+    }
+  </script>
+</body>
+</html>
