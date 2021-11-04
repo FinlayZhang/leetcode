@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LRU缓存</title>
+</head>
+<body>
+  <script>
+    // 双向链表删除移动节点只需要0(1)时间复杂度,不需要遍历,有前后指针
+    function ListNode(key, value) {
+      this.key = key
+      this.value = value
+      this.next = null
+      this.prev = null
+    }
+    // 缓存类
+    function LRUCache(capacity) {
+      this.capacity = capacity
+      this.hash = new Map()
+      this.count = 0 // 数量
+      this.dummyHead = new ListNode() // 虚拟头结点
+      this.dummyTail = new ListNode() // 虚拟尾结点
+      this.dummyHead.next = this.dummyTail
+      this.dummyTail.prev = this.dummyHead
+    }
+    // 获取
+    LRUCache.prototype.get = function(key) {
+      let node = this.hash.get(key)
+      if (!node) return -1
+      this.moveToHead(node)
+      return node.value
+    }
+    // 存储
+    LRUCache.prototype.put = function(key, value) {
+      let node = this.hash.get(key)
+      if (!node) {
+        if (this.count === this.capacity) {
+          let lastNode = this.dummyTail.prev
+          this.hash.delete(lastNode.key)
+          this.count--
+          this.removeFromList(lastNode) // 删除链表倒数第二个节点
+        }
+        let newNode = new ListNode(key, value)
+        this.addToHead(newNode)
+        this.hash.set(key, newNode)
+        this.count++
+      } else {
+        node.value = value
+        this.moveToHead(node)
+      }
+    }
+    // 移动节点到链表头部
+    LRUCache.prototype.moveToHead = function(node) {
+      this.removeFromList(node)
+      this.addToHead(node)
+    }
+    // 从链表中删除节点
+    LRUCache.prototype.removeFromList = function(node) {
+      let prevNode = node.prev
+      let nextNode = node.next
+      prevNode.next = nextNode
+      nextNode.prev = prevNode
+    }
+    // 在链表头部添加节点
+    LRUCache.prototype.addToHead = function(node) {
+      node.prev = this.dummyHead // node的前驱结点变为哑结点
+      node.next = this.dummyHead.next // node变为哑结点后的第一个节点
+      this.dummyHead.next.prev = node // 原第一个节点的前驱结点变为node
+      this.dummyHead.next = node // 哑结点的后节点变为node
+    }
+    let LRU = new LRUCache(2)
+    console.log(
+      LRU.put(1, 1),
+      LRU.put(2, 2),
+      LRU.get(1),
+      LRU.put(3, 3),
+      LRU.get(2)
+    )
+  </script>
+</body>
+</html>
