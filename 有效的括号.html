@@ -14,12 +14,12 @@
           '{': '}',
           '[': ']'
         }
-      for (let i of s) {
-        if (i in map) {
+      for (let key of s) {
+        if (key in map) {
           stack.push(i)
           continue
         }
-        if (map[stack.pop()] !== i) return false
+        if (map[stack.pop()] !== key) return false
       }
       return !stack.length
     }

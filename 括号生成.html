@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>括号生成</title>
+</head>
+<body>
+  <script>
+    var generateParenthesis = function(n) {
+      if (n <= 0) return []
+      let res = []
+      const helper = function(str, left, right) {
+        // str当前字符串,left左括号,right右括号
+        if (left === 0 && right === 0) {
+          res.push(str)
+          return
+        }
+        if (left === right) { // 剩余左括号和右括号相等,下一个肯定是左括号
+          helper(`${str}(`, left - 1, right)
+        } else if (left < right) { // 剩余左括号小于右括号
+          if (left > 0) { // 左右都可以
+            helper(`${str}(`, left - 1, right)
+          }
+          helper(`${str})`, left, right - 1)
+        }
+      }
+      helper('', n, n)
+      return res
+    }
+    console.log(generateParenthesis(3))
+  </script>
+</body>
+</html>
